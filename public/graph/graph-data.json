@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {
+      "id": "claude-code-installation-guide",
+      "type": "post",
+      "title": "Claude Code 完整安装与配置指南",
+      "slug": "claude-code-installation-guide",
+      "connections": 0
+    },
+    {
+      "id": "claude-code-model-selection-guide",
+      "type": "post",
+      "title": "Claude Code 模型选择完整指南",
+      "slug": "claude-code-model-selection-guide",
+      "connections": 0
+    }
+  ],
+  "connections": [],
+  "metadata": {
+    "totalPosts": 2,
+    "totalConnections": 0,
+    "maxNodesApplied": false,
+    "originalNodeCount": 2
+  }
+}

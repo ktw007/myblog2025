@@ -1,0 +1,183 @@
+---
+title: 'Claude Code 完整安装与配置指南'
+description: '详细的 Claude Code 安装和配置教程，涵盖 Windows 和 macOS 系统，包含 Node.js、Git Bash 安装以及环境变量配置的完整说明。'
+pubDate: '2025-11-02'
+image: 'attachments/1.png'
+---
+
+## 额度查询工具
+
+**check-credits.html** - 双击打开，用于额度使用查询
+
+## 配置前提
+
+### Windows 系统
+- 已安装 Node.js
+- 已安装 Git Bash
+- 已安装 Claude Code
+
+### macOS 系统
+- 已安装 Node.js
+- 已安装 Claude Code
+
+> 如果未安装上述软件，请查看下方的软件安装指南
+
+---
+
+## 软件安装指南
+
+### Node.js 安装
+
+#### Windows 系统
+
+1. **下载 Node.js**
+   - 访问官网：[https://nodejs.org/zh-cn/download](https://nodejs.org/zh-cn/download)
+   - 下载 Windows 安装包并安装
+
+2. **验证安装**
+
+   安装完成后，在终端中测试：
+
+   ```bash
+   node -v
+   npm -v
+   ```
+
+3. **解决 PowerShell 脚本执行策略问题**
+
+   如果在 Windows PowerShell 中运行 `npm -v` 时出现"禁用脚本"或"无法加载文件"的提示，需要修改执行策略：
+
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned
+   ```
+
+   > 执行时选择 `Y` 或 `A` 确认。如果仍有问题，可以将错误信息复制到 AI 助手询问解决方案。
+
+#### macOS 系统
+
+使用 Homebrew 安装（推荐）：
+
+```bash
+brew install node
+```
+
+安装完成后同样使用 `node -v` 和 `npm -v` 验证。
+
+---
+
+### Git Bash 安装（仅 Windows）
+
+- **下载地址**：[https://gitforwindows.org/](https://gitforwindows.org/)
+- 下载并安装，安装过程可使用默认选项
+
+> macOS 系统自带 Git 和 Bash，无需额外安装
+
+---
+
+### Claude Code 安装
+
+在安装好 Node.js 后，使用以下命令全局安装 Claude Code：
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+安装完成后，即可在终端使用 `claude` 命令启动。
+
+---
+
+## 操作流程
+
+### 操作步骤
+
+1. **替换真实密钥和 URL**
+   将下方命令中的 `sk-xxxx` 和 `https://xxx.xxx` 替换为你的真实密钥和 URL
+
+2. **复制粘贴到本地终端**
+   - **Windows 用户建议**：使用 VS Code 打开终端，排版更优雅，还可以拖拽文件
+   - **Windows 10 用户特别提示**：原始 PowerShell 界面体验较差，建议安装 [Windows Terminal](https://learn.microsoft.com/zh-cn/windows/terminal/)，但仍不如 VS Code 集成终端优雅
+
+3. **输入 `claude` 命令**
+   启动 Claude Code
+
+---
+
+## macOS 配置
+
+### 临时配置（当前窗口生效）
+
+```bash
+export ANTHROPIC_AUTH_TOKEN="sk-xxxx"
+export ANTHROPIC_BASE_URL="https://xxx.xxx"
+```
+
+### 永久设置
+
+```bash
+echo -e '\nexport ANTHROPIC_AUTH_TOKEN=sk-xxxx' >> ~/.bashrc
+echo -e '\nexport ANTHROPIC_BASE_URL=https://xxx.xxx' >> ~/.bashrc
+echo -e '\nsource ~/.bashrc' >> ~/.bash_profile
+source ~/.bashrc
+```
+
+---
+
+## Windows 配置
+
+### 临时配置（当前窗口生效）
+
+在 PowerShell 中执行：
+
+```powershell
+$env:ANTHROPIC_AUTH_TOKEN = "sk-xxxxx"
+$env:ANTHROPIC_BASE_URL = "https://xxx.xxx"
+```
+
+### 永久设置（需重启窗口生效）
+
+在 PowerShell 中执行：
+
+```powershell
+[System.Environment]::SetEnvironmentVariable("ANTHROPIC_AUTH_TOKEN", "sk-xxxxx", "User")
+[System.Environment]::SetEnvironmentVariable("ANTHROPIC_BASE_URL", "https://xxx.xxx", "User")
+```
+
+---
+
+## Claude Code 快捷键指南
+
+### Windows 系统快捷键
+
+#### 输入换行快捷键
+
+Claude Code 在不同终端环境下的换行方式有所不同：
+
+| 终端环境 | 换行快捷键 | 说明 |
+|---------|----------|------|
+| **VS Code 集成终端** | `Alt` + `Enter` | 在 VS Code 的终端中启动 Claude Code 时使用 |
+| **Windows 自带终端** | `Ctrl` + `Enter` | 在 PowerShell、CMD 或 Windows Terminal 中使用 |
+
+> 💡 **提示**：换行快捷键用于在输入多行内容时不立即发送消息
+
+---
+
+### 通用快捷键（所有平台）
+
+在 Claude Code 启动后的交互界面中，以下快捷键适用于所有平台：
+
+| 快捷键 | 功能 | 说明 |
+|--------|------|------|
+| `ESC` `ESC`<br/>（连按两次） | **回退操作** | 回退指定消息以及相关的代码修改（自行选择） |
+| `Ctrl` + `L` | **清空输入框** | 快速清除当前输入的内容 |
+
+> ⚠️ **注意**：连按两次 ESC 会选择第一项回退此条消息下的相关代码修改，请谨慎选择
+
+---
+
+## 注意事项
+
+- 临时配置只在当前终端窗口有效，关闭后需重新配置
+- 永久设置在 Windows 上需要重启终端窗口才能生效
+- macOS 的永久设置需要重新加载配置文件或重启终端
+- 请妥善保管你的 API 密钥，不要分享给他人
+- 熟练使用快捷键可以大幅提升 Claude Code 的使用效率

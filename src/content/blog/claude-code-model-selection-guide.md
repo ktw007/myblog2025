@@ -1,7 +1,7 @@
 ---
 title: 'Claude Code 模型选择完整指南'
 description: 'Claude Code v2.2.26 中不同模型的详细说明，包括 Claude Sonnet 4.5 和 GPT-5 的推理模式切换、适用场景与最佳实践。'
-pubDate: '2025-11-02'
+pubDate: '2025-11-02T12:00:00+08:00'
 ---
 
 # Claude Code 模型选择完整指南

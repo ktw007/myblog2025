@@ -1,7 +1,7 @@
 ---
 title: 'Claude Code 完整安装与配置指南'
 description: '详细的 Claude Code 安装和配置教程，涵盖 Windows 和 macOS 系统，包含 Node.js、Git Bash 安装以及环境变量配置的完整说明。'
-pubDate: '2025-11-03T12:00:00+08:00'
+date: '2025-11-03T12:00:00+08:00'
 image: 'attachments/1.png'
 ---
 

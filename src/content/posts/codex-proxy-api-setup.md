@@ -1,7 +1,7 @@
---T::+08:00---
+---
 title: 'Codex 中转 API 配置教程'
 description: '手把手配置 Codex 使用中转 API（自定义 provider、base_url、API Key 环境变量），含 Windows / macOS / Linux 设置示例。'
-date: '${DATE_NOW}'
+date: 2025-11-06T10:00:00+08:00
 image: 'attachments/codex.webp'
 tags: ['Codex','中转API','配置','教程']
 hideTOC: false

@@ -1,0 +1,135 @@
+---
+export interface Props {
+  href: string;
+  filename: string;
+  description?: string;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'outline';
+  class?: string;
+}
+
+const {
+  href,
+  filename,
+  description = '',
+  size = 'md',
+  variant = 'primary',
+  class: className = '',
+} = Astro.props;
+
+// Size variations
+const sizeClasses = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2 text-base',
+  lg: 'px-6 py-3 text-lg'
+};
+
+// Variant classes
+const variantClasses = {
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  outline: 'btn-outline'
+};
+
+const buttonClasses = `download-btn inline-flex items-center gap-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background no-underline ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
+---
+
+<a
+  href={href}
+  download={filename}
+  class={buttonClasses}
+  title={`下载 ${filename}`}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="download-icon"
+  >
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="7 10 12 15 17 10"></polyline>
+    <line x1="12" y1="15" x2="12" y2="3"></line>
+  </svg>
+  <span class="download-content">
+    <span class="download-filename">{filename}</span>
+    {description && (
+      <span class="download-description">{description}</span>
+    )}
+  </span>
+</a>
+
+<style>
+  .download-btn {
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    user-select: none;
+    vertical-align: middle;
+    border: 1px solid transparent;
+  }
+
+  .download-btn:hover {
+    text-decoration: none !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .download-btn:active {
+    transform: translateY(0);
+  }
+
+  .download-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+  }
+
+  .download-filename {
+    font-weight: 600;
+  }
+
+  .download-description {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    font-weight: 400;
+  }
+
+  .download-icon {
+    flex-shrink: 0;
+  }
+
+  /* Special handling for buttons in prose/markdown content */
+  .prose .download-btn {
+    margin: 0.5rem 0;
+  }
+
+  /* Ensure proper focus states */
+  .download-btn:focus-visible {
+    outline: none;
+    ring: 2px;
+    ring-offset: 2px;
+  }
+
+  /* Animation on hover */
+  .download-btn:hover .download-icon {
+    animation: download-bounce 0.6s ease-in-out;
+  }
+
+  @keyframes download-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(3px);
+    }
+  }
+</style>

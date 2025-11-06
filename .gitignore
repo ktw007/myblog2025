@@ -45,3 +45,6 @@ src/content/.obsidian/workspace-mobile.json
 # Generated deployment platform files (GitHub Pages only)
 public/_redirects
 public/_headers
+
+# Temporary markdown drafts
+待添加的md/

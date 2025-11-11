@@ -5,12 +5,13 @@ date: '2025-11-10T12:00:00+08:00'
 image: 'attachments/index.png'
 ---
 
-## 问题解析：Token 超出限制错误
+## 问题解析：Token 超出限制错误（当且仅当当前请求出现[response exceeded the 32000 output token maximum]的提示才需要细化，否则无需细化）
 
 当您在使用 Claude AI 时，可能会遇到类似下图的错误信息：
 
 ```
 API Error: Claude's response exceeded the 32000 output token maximum. To configure this behavior, set the CLAUDE_CODE_MAX_OUTPUT_TOKENS environment variable.
+或 API Error: Cannot read properties of undefined (reading 'map')
 ```
 
 这个错误意味着 AI 试图生成的回复内容太长，超出了单次响应的令牌（Token）数量上限。
@@ -31,7 +32,7 @@ API Error: Claude's response exceeded the 32000 output token maximum. To configu
 
 1.  **规划任务**：在开始前，先让 AI 给出总体目标，并根据目标规划出几个关键步骤。
 2.  **分步执行**：让AI每次只操作实现一次细化后任务的写入或更改操作，完成一个步骤后再继续完成后续步骤。
-3.  **确认并继续**：可以一次性说明执行步骤，如先实现xxx任务1，完成后继续实现xxx任务2，等等。
+3.  **确认并继续**：可以一次性说明执行步骤，如先实现xxx任务1（或任务1分三次生成，三次写入），完成后继续实现xxx任务2，等等。
 4.  **优势**：任务越细化，任务越小，响应速度越块。
 
 如下图所示，将一个长期的学习计划分解为每天的具体任务，可以有效避免单次输出内容过长的问题。
@@ -47,6 +48,7 @@ API Error: Claude's response exceeded the 32000 output token maximum. To configu
 -   **第三步**：“接下来，请为 `Button.js` 组件编写样式。”
 
 > 💡 **提示**：通过这种方式，您不仅可以避免 Token 限制问题，还能更好地控制项目的进程和代码质量，且速度流畅。
+> 💡 **提示**：可以显示提示ai，将当前要完成的内容，如写入，”分N次生成，N次写入“
 
 ---
 

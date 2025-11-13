@@ -124,7 +124,7 @@ const pagination = {
             </a>
             <div class="relative wechat-wrapper">
               <button
-                id="wechat-button"
+                id="posts-wechat-button"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-highlight-600 dark:text-highlight-400 bg-highlight-50 dark:bg-highlight-900/20 rounded-lg border border-highlight-200 dark:border-highlight-700 hover:bg-highlight-100 dark:hover:bg-highlight-900/40 hover:text-highlight-700 dark:hover:text-highlight-300 transition-all duration-200"
                 title="微信: ktws007"
               >
@@ -133,7 +133,7 @@ const pagination = {
                 </svg>
                 微信
               </button>
-              <div id="wechat-popup" class="wechat-popup" style="display: none;">
+              <div id="posts-wechat-popup" class="wechat-popup" style="display: none;">
                 <div class="wechat-popup-content">
                   <button class="wechat-close" aria-label="关闭">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -247,8 +247,8 @@ const pagination = {
 <script>
   // WeChat popup handler
   document.addEventListener('DOMContentLoaded', () => {
-    const wechatButton = document.getElementById('wechat-button');
-    const wechatPopup = document.getElementById('wechat-popup');
+    const wechatButton = document.getElementById('posts-wechat-button');
+    const wechatPopup = document.getElementById('posts-wechat-popup');
     const closeButton = wechatPopup?.querySelector('.wechat-close');
 
     if (wechatButton && wechatPopup) {

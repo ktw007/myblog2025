@@ -261,7 +261,7 @@
         <form id="queryForm">
             <div class="form-group">
                 <label for="serverUrl">URL</label>
-                <input type="text" id="serverUrl" placeholder="https://blog.ktws007.xyz" required>
+                <input type="text" id="serverUrl" placeholder="https://akw.ktwi.online" required>
             </div>
 
             <div class="form-group">
@@ -477,7 +477,8 @@
                     // ✅ 查询成功后保存配置
                     saveConfig(serverUrl, apiKey);
 
-                    showSuccess(responseData.data.summary);
+                    const normalizedSummary = normalizeSummaryForUser(responseData.data.summary);
+                    showSuccess(normalizedSummary);
                     console.log('>>> showSuccess 调用完成');
                 } else if (responseStatus === 401) {
                     console.log('>>> 401 错误');
@@ -511,6 +512,22 @@
                 console.log('=== 清理工作完成 ===');
             }
         });
+
+        function normalizeSummaryForUser(summary) {
+            if (typeof summary !== 'string') {
+                return summary;
+            }
+
+            const parts = summary.trim().split('/');
+            if (parts.length === 2) {
+                const denominator = parts[1].trim();
+                if (denominator === '未知') {
+                    return '∞/未知';
+                }
+            }
+
+            return summary;
+        }
 
         function showSuccess(summary) {
             console.log('>>> showSuccess 函数执行，summary:', summary);
